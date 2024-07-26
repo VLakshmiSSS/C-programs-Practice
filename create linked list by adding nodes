@@ -10,17 +10,19 @@ typedef struct List_node
 
 node *head=NULL;
 
-//create head node
-node* createHead(int a)
-{
-    head->value=a;
-    head->next=NULL;
-    return head;
-}
+
 
 //add a node to existing list
 void createNode(int a)
 {
+    if (head==NULL)
+    {
+    head=(node*)malloc(sizeof(node));
+    head->value=a;
+    head->next=NULL;
+    }
+    else
+    {
     node* temp=(node*)malloc(sizeof(node));
     node* ptr;
     temp->value=a;
@@ -31,18 +33,20 @@ void createNode(int a)
     {
         ptr=ptr->next;
     }
-    ptr->next=temp;
+    ptr->next=temp; 
+    }
+    
 }
 
 //main function
 int main()
 {
     int a=10;
-    head=(node*)malloc(sizeof(node));
     node *p;
-    head=createHead(a);
-    p=head;
     createNode(20);
+    p=head;
+    createNode(30);
+    createNode(40);
     while(p !=NULL)
     {
         printf("\n%d->",p->value);
